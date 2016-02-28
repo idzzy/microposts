@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  get 'users/update'
+  get 'users/edit'
+
   # get 'static_pages/home'
   # get 'users/new'
   # get 'sessions/new'
