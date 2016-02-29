@@ -1,11 +1,10 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit]
   
   def show
-   @user = User.find(params[:id])
   end
 
   def edit
-   @user = User.find(params[:id])
   end
   
   def new
@@ -14,6 +13,7 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
+    
     if @user.save
       flash[:success] = "Welcome to the Sample App!"
       redirect_to @user
@@ -23,16 +23,17 @@ class UsersController < ApplicationController
   end
 
   def update
-    #[TBD] if login
     @user = User.find(params[:id])
-    if @user.update(user_params_edit)
-      flash[:success] = "Updated user information"
-      redirect_to user_path(@user)
-    else
-      render 'edit'
+    
+    if @user.id == session[:user_id]
+      if @user.update(user_params_update)
+        flash[:success] = "Updated user information"
+        redirect_to user_path(@user)
+      else
+        render 'edit'
+      end
     end
   end
-
 
   private
 
@@ -41,8 +42,12 @@ class UsersController < ApplicationController
                                  :password_confirmation)
   end
 
-  def user_params_edit
+  def user_params_update
     params.require(:user).permit(:name, :email, :profile, :location)
+  end
+  
+  def set_user
+    @user = User.find(params[:id])
   end
   
 end
