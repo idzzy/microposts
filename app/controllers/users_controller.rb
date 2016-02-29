@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
-
+  
   def update
     @user = User.find(params[:id])
     
