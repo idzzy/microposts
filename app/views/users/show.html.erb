@@ -49,3 +49,17 @@
     </div>
   </div>
 </div>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+      <%= link_to "followers", 'users/followers/(@user.id)' %>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-2">
+      <%= link_to "followings", 'users/followings/' %><%= @user.id %>
+    </div>
+  </div>
+</div>
