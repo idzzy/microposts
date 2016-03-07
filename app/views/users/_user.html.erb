@@ -1,0 +1,7 @@
+<div class="row">
+    <div class="col-md-3">
+        <%= link_to gravatar_for(@user, size: 50), @user.name %>
+        <span class="user"><%= @user.name %></span><br>
+        <span><%= link_to "view profile", @user %></span>
+    </div>
+</div>

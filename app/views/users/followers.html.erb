@@ -9,12 +9,9 @@
   </aside>
 
   <div class="col-md-8">
-     <% if @user.followers.any? %>
-      <h3>Followers (<%= @user.followers.count %>)</h3>
-      <ol">
+    <% if @followers.any? %>
+      <h3>Followers (<%= @followers.count %>)</h3>
         <%= render @followers %>
-      </ol>
     <% end %>
   </div>
-
 </div>

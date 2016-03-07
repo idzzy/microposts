@@ -41,6 +41,17 @@ class UsersController < ApplicationController
     
   end
 
+  def followings
+    @user = User.find(params[:id])
+    @followings = @user.following_users
+  end
+  
+  def followers
+    @user = User.find(params[:id])
+    @followers = @user.follower_users
+  end
+
+
   private
 
   def user_params
@@ -62,16 +73,6 @@ class UsersController < ApplicationController
     unless current_user == @user
       redirect_to root_path
     end
-  end
-
-  def followings
-    @user = User.find(params[:id])
-    @followings = @user.following_users
-  end
-  
-  def followers
-    @user = User.find(params[:id])
-    @followers = @user.follower_users
   end
 
 end

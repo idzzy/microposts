@@ -11,10 +11,16 @@ Rails.application.routes.draw do
   get 'users/update'
   get 'users/edit'
 
-  get 'users/followers/:id', to: 'users#followers'
-  get 'users/following/:id', to: 'users#following' 
+  #get 'users/followers/:id', to: 'users#followers'
+  #get 'users/following/:id', to: 'users#following' 
 
-  resources :users
+  resources :users do
+    member do
+      get :followings
+      get :followers
+    end
+  end
+  
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts
   resources :relationships, only: [:create, :destroy]
